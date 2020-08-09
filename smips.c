@@ -6,19 +6,9 @@
 #include <stdint.h>
 #include <stdlib.h>
 #include <string.h>
+#include "smips.h"
 
 #define N_BITS 32
-
-uint32_t *terminate_smips(uint32_t *instruction_code, uint32_t *registers);
-uint32_t print_smips(char *bits);
-void print_register(uint32_t *registers);
-uint32_t convert_binary(char * bits);
-char *convert_string(uint32_t value);
-int16_t convert_s_pattern(uint32_t instruction);
-int16_t convert_t_pattern(uint32_t instruction);
-int16_t convert_d_pattern(uint32_t instruction);
-int16_t convert_I_pattern(uint32_t instruction);
-char *add_zero(char * buffer);
 
 int main(int argc, char *argv[]) {
     // Check if the number of arugments are correct
@@ -409,7 +399,7 @@ int16_t convert_t_pattern(uint32_t instruction) {
     uint32_t result = 0;
 
     int shift_num = 15;
-    // Store the bits of the s into result
+    // Store the bits of the t into result
     for (int i = 0; i < 5; i++) {
         int mask = UINT32_C(1) << (N_BITS - 1 - shift_num);
         int shift = UINT32_C(1) << i;
@@ -430,7 +420,7 @@ int16_t convert_d_pattern(uint32_t instruction) {
     uint32_t result = 0;
 
     int shift_num = 20;
-    // Store the bits of the s into result
+    // Store the bits of the d into result
     for (int i = 0; i < 5; i++) {
         int mask = UINT32_C(1) << (N_BITS - 1 - shift_num);
         int shift = UINT32_C(1) << i;
@@ -451,7 +441,7 @@ int16_t convert_I_pattern(uint32_t instruction) {
     int32_t result = 0;
 
     int shift_num = 15;
-    // Store the bits of the s into result
+    // Store the bits of the I into result
     for (int i = 0; i < 16; i++) {
         int mask = UINT32_C(1) << (15 - shift_num);
         int shift = UINT32_C(1) << i;
