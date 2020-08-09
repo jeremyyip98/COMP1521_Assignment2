@@ -96,11 +96,6 @@ uint32_t *terminate_smips(uint32_t *instruction_code, uint32_t *registers) {
         }
         last_pattern[11] = '\0';
 
-        if (i == 2) {
-            //printf("i: %d, s: %d, t: %d, I: %d\n", i, registers[s], t ,I);
-            //printf("first_pattern: [%s], last_pattern: [%s]\n", first_pattern, last_pattern);
-        }
-
         if (strcmp(first_pattern, "011100") == 0) { // If the instruction is mul
             registers[d] = registers[s] * registers[t];
         } else if (strcmp(first_pattern, "000100") == 0) { // Else if the instruction is beq
@@ -182,7 +177,6 @@ uint32_t print_smips(char *bits) {
     }
     last_pattern[11] = '\0';
 
-    //printf("first_pattern: [%s], last_pattern: [%s]\n", first_pattern, last_pattern);
     if (strcmp(first_pattern, "011100") == 0) { // If the instruction is mul
         printf("mul  $%d, $%d, $%d\n", d, s, t);
     } else if (strcmp(first_pattern, "000100") == 0) { // Else if the instruction is beq
@@ -335,7 +329,6 @@ uint32_t convert_binary(char * bits) {
                 result = result | value;
                 break;
             default:
-                //printf("\nInvalid hexa digit %c ", bits[i]);
                 return result;
         }
         i++;
